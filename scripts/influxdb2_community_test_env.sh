@@ -49,6 +49,17 @@ run_docker_influx(){
    echo "\n$(tail -n32 $LOG_FILE)\n"
 }
 
+run_docker_influx_test_env(){
+
+   mkdir -p ${LOG_DIR}
+   sudo docker stop $INSTANCE_NAME
+   sudo docker rm $INSTANCE_NAME
+   sudo docker pull quay.io/influxdb/influx:nightly
+   sudo docker build -t influxdb_test_image .
+   sudo docker run --name $INSTANCE_NAME --publish 9999:9999 influxdb_test_image > ${LOG_FILE} 2>&1 &
+
+}
+
 stop_docker_influx(){
   if [ "$(docker ps -q -f name=$INSTANCE_NAME)" ] ; then
       echo "["$(date +"%d.%m.%Y %T")"] stopping docker instance ${INSTANCE_NAME}"
@@ -96,6 +107,8 @@ while [ "$1" != "" ]; do
                                 INSTANCE_NAME=$1
                                 ;;
         setup | start )         ACTION="setup"
+                                ;;
+        setup-qa | start-qa )   ACTION="setup-qa"
                                 ;;
         stop | shutdown )       ACTION="stop"
                                 ;;
@@ -145,6 +158,8 @@ case $ACTION in
               download_telegraf
               pull_docker
               run_docker_influx
+              ;;
+  setup-qa)   run_docker_influx_test_env
               ;;
   stop )      stop_docker_influx
               ;;

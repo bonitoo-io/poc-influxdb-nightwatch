@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "influx:setup": "./scripts/influxdb2_community_test_env.sh setup",
+    "influx:setup": "cd scripts && ./influxdb2_community_test_env.sh setup-qa && cd -",
     "influx:stop": "./scripts/influxdb2_community_test_env.sh stop",
     "influx:clean": "./scripts/influxdb2_community_test_env.sh clean",
     "test:chrome": "cross-env NIGHTWATCH_ENV=chrome npm test",
@@ -13,6 +13,7 @@
     "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_ENV=firefox NIGHTWATCH_VERBOSE=true node --inspect-brk ./node_modules/cucumber/bin/cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
   },
   "devDependencies": {
+    "axios": "^0.19.0",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
