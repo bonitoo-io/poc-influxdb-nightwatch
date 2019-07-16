@@ -1,0 +1,33 @@
+{
+  "name": "influxdb-nightwatch",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "influx:setup": "./scripts/influxdb2_community_test_env.sh setup",
+    "influx:stop": "./scripts/influxdb2_community_test_env.sh stop",
+    "influx:clean": "./scripts/influxdb2_community_test_env.sh clean",
+    "test:chrome": "cross-env NIGHTWATCH_ENV=chrome npm test",
+    "test:default": "cross-env NIGHTWATCH_ENV=default npm test",
+    "test": "mkdirp report && cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_ENV=firefox NIGHTWATCH_VERBOSE=true node --inspect-brk ./node_modules/cucumber/bin/cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "chromedriver": "74.0.0",
+    "cross-env": "^5.2.0",
+    "cucumber": "^5.1.0",
+    "cucumber-html-reporter": "^5.0.0",
+    "cucumber-pretty": "^1.5.2",
+    "install": "^0.13.0",
+    "mkdirp": "^0.5.1",
+    "nightwatch": "^1.1.13",
+    "nightwatch-api": "^2.3.0",
+    "npm-run-all": "^4.1.5",
+    "selenium-server": "^3.141.59"
+  },
+  "author": "",
+  "license": "ISC"
+}
