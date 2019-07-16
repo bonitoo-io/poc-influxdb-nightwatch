@@ -1,21 +1,19 @@
 // TBD - leverage influxdbv2 REST API
 const axios = require('axios');
 
-const flush = () => {
+const active_config = require('../bonitoo.conf.json').active
+const config = require('../bonitoo.conf.json')[active_config]
+
+const flush = async () => {
     console.log('calling flush')
-    axios.get('http://localhost:9999/debug/flush').then(response => {
-        console.log("RESPONSE: " + response)
-    }).catch(err => {
-        console.log("ERROR: " + err)
-    }).finally(() => {
-        console.log("Finally ---")
-    })
-/*    cy.request({
-        method: 'GET',
-        url: '/debug/flush',
-    }) */
+    await axios.get(`http://${config.host}:${config.port}/debug/flush`);
 }
 
-module.exports = { flush }
+module.exports = { flush, config }
 
-flush()
+console.log(config.config_id);
+console.log(config.host);
+console.log(config.port)
+console.log(config.def_ctx);
+
+//flush()

@@ -9,8 +9,8 @@
     "influx:clean": "./scripts/influxdb2_community_test_env.sh clean",
     "test:chrome": "cross-env NIGHTWATCH_ENV=chrome npm test",
     "test:default": "cross-env NIGHTWATCH_ENV=default npm test",
-    "test": "mkdirp report && cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json",
-    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_ENV=firefox NIGHTWATCH_VERBOSE=true node --inspect-brk ./node_modules/cucumber/bin/cucumber-js --require-module babel-core/register --require cucumber.conf.js --require step-definitions --format node_modules/cucumber-pretty"
+    "test": "mkdirp report && cucumber-js --require-module babel-core/register --require cucumber.conf.js --require stepDefinitions --format node_modules/cucumber-pretty --format json:report/cucumber_report.json",
+    "debug": "cross-env DEBUG=nightwatch-api NIGHTWATCH_ENV=firefox NIGHTWATCH_VERBOSE=true node --inspect-brk ./node_modules/cucumber/bin/cucumber-js --require-module babel-core/register --require cucumber.conf.js --require stepDefinitions --format node_modules/cucumber-pretty"
   },
   "devDependencies": {
     "axios": "^0.19.0",
