@@ -51,12 +51,10 @@ When(/^enter enter a new organization name "(.*?)"$/, async orgname => {
 
 When(/^enter a new bucket name "(.*?)"$/, async bucketname => {
     await setupPage.enterBucketName((bucketname === 'DEFAULT') ? defaultUser.bucketname : bucketname)
-    client.pause(10000)
 })
 
 When(/^click next from setup page$/, async () => {
     await setupPage.clickNext();
-    client.pause(10000)
 })
 
 Then(/^verify ready page$/, async () => {
@@ -67,7 +65,10 @@ Then(/^verify ready page$/, async () => {
 
 When(/^click quick start button$/, async () => {
     await readyPage.clickQickStart()
-    client.pause(10000)
+})
+
+When(/^click advanced button$/, async() => {
+
 })
 
 
