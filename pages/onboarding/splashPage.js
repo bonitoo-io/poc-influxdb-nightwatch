@@ -1,23 +1,23 @@
 const assertCommands = {
 
     async corporateLinkCorrect(){
-        this.assert.attributeContains('@creditsFooterLink', 'href','https://www.influxdata.com/')
+       await this.assert.attributeContains('@creditsFooterLink', 'href','https://www.influxdata.com/')
     },
 
     async corporateLinkTextCorrect(){
-        this.expect.element('@creditsFooterLink').text.to.contains('InfluxData')
+        await this.expect.element('@creditsFooterLink').text.to.contains('InfluxData')
     },
 
     async welcomeHeaderVisible(){
-        this.expect.element('@welcomeHeader').to.be.visible
+        await this.expect.element('@welcomeHeader').to.be.visible
     }
 }
 
 const actionCommands = {
 
     async clickStart() {
-        this.click('@startButton', response => {
-          //  client.assert.ok(typeof response === "object") TODO - figure out why this line ends up with client destroyed in Step Defs ???
+        await this.click('@startButton', async response => {
+            this.assert.ok(typeof response === "object")
         })
     }
 }
